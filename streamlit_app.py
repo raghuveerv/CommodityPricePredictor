@@ -19,13 +19,17 @@ M_food_prices = load_and_prepare_data(data_path)
 st.write("### Original Data")
 st.write(M_food_prices.head())
 
-# Filter data by countries
-countries = ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh']
-selected_countries = st.sidebar.multiselect("Select Countries", countries, default=countries)
+regions = {
+    "SA": ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh'],  # South Asia
+    "CA": ['Costa Rica', 'El Salvador', 'Guatemala', 'Honduras', 'Panama', 'Colombia']  # Central America
+}
+# Sidebar selection for regions
+selected_region = st.sidebar.selectbox("Select Region", list(regions.keys()), index=0)
+selected_countries = regions[selected_region]
 filtered_data = process_data(M_food_prices, selected_countries)
 
 # Data cleaning and currency conversion
-cleaned_data = clean_data(filtered_data)
+cleaned_data= clean_data(filtered_data)
 converted_data = currency_conversion(cleaned_data)
 
 # Display filtered data

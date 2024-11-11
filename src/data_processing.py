@@ -3,7 +3,7 @@ import pandas as pd
 from src.constants import column_rename_dict, currency_conversion_dict
 
 def load_and_prepare_data(file_path):
-    df = pd.read_csv(file_path, on_bad_lines='error')
+    df = pd.read_csv(file_path, encoding='ISO-8859-1', on_bad_lines='error')
     df.rename(columns=column_rename_dict, inplace=True)
     return df
 
@@ -12,6 +12,10 @@ def process_data(df, countries):
 
 def clean_data(df):
     df = df.drop_duplicates()
+    df = df[df['price_year'] >= 2008]
+    #df['month_year'] = df['price_year'].astype(str) + '-' + df['price_month'].astype(str)
+    # Convert 'month_year' to a Period type with monthly frequency
+    #df['month_year'] = pd.to_datetime(df['month_year'], format='%Y-%m')
     return df
 
 def currency_conversion(df):
