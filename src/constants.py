@@ -21,7 +21,9 @@ currency_conversion_dict = {
     'INR': 0.012,
     'NPR': 0.0075,
     'PKR': 0.0036,
-    'LKR': 0.0031
+    'LKR': 0.0031,
+    'COP': 0.00024,
+    'GTQ': 0.13
 }
 
 commodity_mapping = {
