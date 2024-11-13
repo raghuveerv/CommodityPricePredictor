@@ -84,16 +84,16 @@ from b2sdk.v2 import B2Api, InMemoryAccountInfo, DoNothingProgressListener
 def load_data():
     account_id = '0054cde0cafa8260000000002' # can be the keyID 
     application_key = 'K005ZTPUCjICGyTcMRzq9eL5MBeiJDQ'
-    info = InMemoryAccountInfo()
-    b2_api = B2Api(info)
-    b2_api.authorize_account("production", account_id, application_key)
-    bucket = b2_api.get_bucket_by_name("World-Food-Data")
-    # Download the file by ID
-    file_info = bucket.download_file_by_name("predicted_prices.csv")
-    file_stream = io.BytesIO()
-    file_info.save(file_stream)
-    file_stream.seek(0)
-    return pd.read_csv(file_stream)
+    # info = InMemoryAccountInfo()
+    # b2_api = B2Api(info)
+    # b2_api.authorize_account("production", account_id, application_key)
+    # bucket = b2_api.get_bucket_by_name("World-Food-Data")
+    # # Download the file by ID
+    # file_info = bucket.download_file_by_name("predicted_prices.csv")
+    # file_stream = io.BytesIO()
+    # file_info.save(file_stream)
+    # file_stream.seek(0)
+    return pd.read_csv("https://raw.githubusercontent.com/raghuveerv/CommodityPricePredictor/refs/heads/main/data/predicted_prices.csv")
 
 # Main function to display the Streamlit app
 def main():
