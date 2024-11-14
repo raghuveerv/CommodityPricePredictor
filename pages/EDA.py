@@ -26,19 +26,21 @@ st.title("Exploratory Data Analysis Dashboard")
 # file_stream.seek(0)
 # Load data and perform initial processing
 st.subheader("Dataset Overview")
-M_food_prices = load_and_prepare_data("https://raw.githubusercontent.com/raghuveerv/CommodityPricePredictor/refs/heads/main/data/wfp_market_food_prices.csv")
 st.write("### Original Data")
-st.write(M_food_prices.head())
+
 
 regions = {
-    "SA": ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh'],  # South Asia
-    "CA": ['Costa Rica', 'El Salvador', 'Guatemala', 'Honduras', 'Panama', 'Colombia'],  # Central America
-    "ME": ['Azerbaijan', 'Jordan', 'Lebanon', 'Syrian Arab Republic', 'Turkey', 'Yemen'], #Middle East
-    "SEA": ['Cambodia', 'Indonesia', "Lao People's Democratic Republic", 'Myanmar', 'Philippines', 'Timor-Leste']
+    "South Asia": ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh'],  # South Asia
+    "Central America": ['Costa Rica', 'El Salvador', 'Guatemala', 'Honduras', 'Panama', 'Colombia'],  # Central America
+    "Middle East": ['Azerbaijan', 'Jordan', 'Lebanon', 'Syrian Arab Republic', 'Turkey', 'Yemen'], #Middle East
+    "South East Asia": ['Cambodia', 'Indonesia', "Lao People's Democratic Republic", 'Myanmar', 'Philippines', 'Timor-Leste']
 }
 # Sidebar selection for regions
 selected_region = st.sidebar.selectbox("Select Region", list(regions.keys()), index=0)
 selected_countries = regions[selected_region]
+M_food_prices = load_and_prepare_data(f"https://raw.githubusercontent.com/raghuveerv/CommodityPricePredictor/refs/heads/main/data/wfp_{selected_region}.csv")
+
+
 filtered_data = process_data(M_food_prices, selected_countries)
 
 # Data cleaning and currency conversion
