@@ -4,6 +4,8 @@ import io
 import pandas as pd
 from b2sdk.v2 import B2Api, InMemoryAccountInfo, DoNothingProgressListener
 
+# Set the page title to 'Predicted Prices'
+st.set_page_config(page_title="Predicted Prices")
 
 # Page title
 
