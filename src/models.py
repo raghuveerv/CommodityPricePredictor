@@ -1,6 +1,6 @@
 import pandas as pd
 
-unit_measure_ids = [5, 15, 35, 51]
+unit_measure_ids = [5]
 commodity_categories = [
     'Grains and Cereals', 'Pulses and Lentils', 'Edible Oils', 
     'Vegetables', 'Sweeteners', 'Miscellaneous', 

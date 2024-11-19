@@ -95,7 +95,7 @@ def load_data():
     # file_stream = io.BytesIO()
     # file_info.save(file_stream)
     # file_stream.seek(0)
-    return pd.read_csv("https://raw.githubusercontent.com/raghuveerv/CommodityPricePredictor/refs/heads/main/data/predicted_prices.csv")
+    return pd.read_csv("https://raw.githubusercontent.com/raghuveerv/CommodityPricePredictor/refs/heads/Pranav's-work/data/predicted_prices.csv")
 
 # Main function to display the Streamlit app
 def main():
@@ -106,10 +106,12 @@ def main():
 
     # Filter options
     countries = data['country_name'].unique()
+    months= sorted(data['price_month'].unique())
     years = sorted(data['price_year'].unique())
     commodities = data['commodity_category'].unique()
     
     selected_country = st.selectbox("Select Country", countries)
+    selected_month = st.selectbox("Select Month", months)
     selected_year = st.selectbox("Select Year", years)
     selected_commodity = st.selectbox("Select Commodity Type", commodities)
 
@@ -117,6 +119,7 @@ def main():
     filtered_data = data[
         (data['country_name'] == selected_country) & 
         (data['price_year'] == selected_year) &
+        (data['price_month'] == selected_month) &
         (data['commodity_category'] == selected_commodity)
     ]
 
