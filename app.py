@@ -10,7 +10,7 @@ data_path = 'data/wfp_market_food_prices.csv'
 M_food_prices = load_and_prepare_data(data_path)
 
 # Filter data for specific countries
-countries = ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh']
+countries = ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh','Costa Rica', 'El Salvador','Guatemala', 'Honduras', 'Panama', 'Colombia']
 filtered_data = filter_data_by_country(M_food_prices, countries)
 
 # Clean the data
