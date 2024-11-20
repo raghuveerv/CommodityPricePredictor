@@ -25,7 +25,7 @@ def clean_data_NA(df):
     return None
 
 def currency_conversion(df):
-    df['price'] = df.apply(lambda row: row['price'] * currency_conversion_dict.get(row['cur_name'], 1), axis=1)
+    df['price_usd'] = df.apply(lambda row: row['price'] * currency_conversion_dict.get(row['cur_name'], 1), axis=1)
     return df
 
 def categorize_commodity(df):

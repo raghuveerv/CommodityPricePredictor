@@ -12,7 +12,7 @@ def plot_price_trend(df):
                                 .assign(day=1))
     
     plt.figure(figsize=(20, 10))
-    sns.lineplot(data=df, x='date', y='price', hue='country_name', marker="o")
+    sns.lineplot(data=df, x='date', y='price_usd', hue='country_name', marker="o")
     plt.title('Price Trend Over Time by Country')
     plt.xlabel('Date')
     plt.ylabel('Price in USD')
@@ -23,7 +23,7 @@ def plot_price_trend(df):
 def plot_boxplot_by_country(df):
     """Generate a boxplot for price distribution by country."""
     plt.figure(figsize=(14, 8))
-    sns.boxplot(data=df, x='country_name', y='price')
+    sns.boxplot(data=df, x='country_name', y='price_usd')
     plt.title('Price Distribution by Country')
     plt.xlabel('Country')
     plt.ylabel('Price in USD')
@@ -40,7 +40,7 @@ def plot_commodity_price(df, commodity_name):
                                           .assign(day=1))
     
     plt.figure(figsize=(20, 10))
-    sns.lineplot(data=df_commodity, x='date', y='price', hue='country_name', marker="o")
+    sns.lineplot(data=df_commodity, x='date', y='price_usd', hue='country_name', marker="o")
     plt.title(f'{commodity_name} Price Trend Over Time')
     plt.xlabel('Date')
     plt.ylabel('Price in USD')
