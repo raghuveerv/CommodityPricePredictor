@@ -33,7 +33,7 @@ def plot_boxplot_by_country(df):
 def plot_commodity_price(df, commodity_name):
     """Generate a line plot for a specific commodity's price trend over time."""
     # Filter for the selected commodity
-    df_commodity = df[df['cm_name'] == commodity_name]
+    df_commodity = df[df['commodity_category'] == commodity_name]
     # Rename columns and convert to datetime format
     df_commodity['date'] = pd.to_datetime(df_commodity[['price_year', 'price_month']]
                                           .rename(columns={'price_year': 'year', 'price_month': 'month'})
