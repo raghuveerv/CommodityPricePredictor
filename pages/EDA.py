@@ -61,7 +61,7 @@ st.write("#### Price Distribution by Country (USD)")
 st.pyplot(plot_boxplot_by_country(converted_data))
 
 # Commodity-specific price trends
-commodity = st.sidebar.selectbox("Select Commodity", converted_data['cm_name'].unique())
+commodity = st.sidebar.selectbox("Select Commodity", converted_data['commodity_category'].unique())
 st.write(f"#### {commodity} Price Trend Over Time")
 st.pyplot(plot_commodity_price(converted_data, commodity))
 
@@ -70,10 +70,10 @@ st.subheader("Statistical Analysis")
 
 # Correlation calculation
 st.write("#### Pearson Correlation between Year and Price (USD)")
-correlation, p_value = calculate_correlation(converted_data)
-st.write(f"Pearson correlation coefficient: {correlation}")
-st.write(f"P-value: {p_value}")
-
+plt, min_price = calculate_correlation(converted_data)
+# st.write(f"Pearson correlation coefficient: {plt}")
+st.write(f"P-value: {min_price}")
+st.pyplot(plt)
 # Regression Analysis
 # st.write("#### Regression Analysis")
 # run_regression(converted_data)
