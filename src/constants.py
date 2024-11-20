@@ -1,7 +1,7 @@
 # src/constants.py
 
 column_rename_dict = {
-    'adm0_id': 'country_id',
+    'ï»¿adm0_id': 'country_id',
     'adm0_name': 'country_name',
     'adm1_id': 'region_id',
     'adm1_name': 'region_name',
