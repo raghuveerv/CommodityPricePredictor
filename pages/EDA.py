@@ -8,39 +8,40 @@ from src.analysis import calculate_correlation, run_regression, residual_analysi
 # Page title
 st.title("Exploratory Data Analysis Dashboard")
 
-account_id = '0054cde0cafa8260000000002' # can be the keyID 
-application_key = 'K005ZTPUCjICGyTcMRzq9eL5MBeiJDQ'
-info = InMemoryAccountInfo()
-b2_api = B2Api(info)
-b2_api.authorize_account("production", account_id, application_key)
+# account_id = '0054cde0cafa8260000000002' # can be the keyID 
+# application_key = 'K005ZTPUCjICGyTcMRzq9eL5MBeiJDQ'
+# info = InMemoryAccountInfo()
+# b2_api = B2Api(info)
+# b2_api.authorize_account("production", account_id, application_key)
 
-bucket = b2_api.get_bucket_by_name("World-Food-Data")
+# bucket = b2_api.get_bucket_by_name("World-Food-Data")
 
-# Download the file by ID
-file_info = bucket.download_file_by_name("wfp_market_food_prices.csv")
+# # Download the file by ID
+# file_info = bucket.download_file_by_name("wfp_market_food_prices.csv")
 
-file_stream = io.BytesIO()
+# file_stream = io.BytesIO()
 
-file_info.save(file_stream)
+# file_info.save(file_stream)
 
-file_stream.seek(0)
+# file_stream.seek(0)
 # Load data and perform initial processing
 st.subheader("Dataset Overview")
-M_food_prices = load_and_prepare_data(file_stream)
 st.write("### Original Data")
-st.write(M_food_prices.head())
+
 
 regions = {
-    "SA": ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh'],  # South Asia
-    "CA": ['Costa Rica', 'El Salvador', 'Guatemala', 'Honduras', 'Panama', 'Colombia']  # Central America
+    "South_Asia": ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh'],  # South Asia
+    "Central_America": ['Costa Rica', 'El Salvador', 'Guatemala', 'Honduras', 'Panama', 'Colombia'],  # Central America
+    "Middle_East": ['Azerbaijan', 'Jordan', 'Lebanon', 'Syrian Arab Republic', 'Turkey', 'Yemen'], #Middle East
+    "South_East_Asia": ['Cambodia', 'Indonesia', "Lao People's Democratic Republic", 'Myanmar', 'Philippines', 'Timor-Leste']
 }
 # Sidebar selection for regions
 selected_region = st.sidebar.selectbox("Select Region", list(regions.keys()), index=0)
 selected_countries = regions[selected_region]
-filtered_data = process_data(M_food_prices, selected_countries)
+M_food_prices = load_and_prepare_data(f"https://raw.githubusercontent.com/raghuveerv/CommodityPricePredictor/refs/heads/main/data/wfp_{selected_region}.csv")
 
 # Data cleaning and currency conversion
-cleaned_data = clean_data(filtered_data)
+cleaned_data = clean_data(M_food_prices)
 converted_data = currency_conversion(cleaned_data)
 
 # Display filtered data

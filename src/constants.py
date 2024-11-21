@@ -23,7 +23,8 @@ currency_conversion_dict = {
     'PKR': 0.0036,
     'LKR': 0.0031,
     'COP': 0.00024,
-    'GTQ': 0.13
+    'GTQ': 0.13,
+    'KHR': 0.00025,
 }
 
 commodity_mapping = {
