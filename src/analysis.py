@@ -118,7 +118,6 @@ def display_data_insights(df):
     """
     Display key insights for the dataset focusing on essential information.
     """
-    st.write("### Data Insights")
     
     with st.expander("📊 View Dataset Insights", expanded=True):
         # Basic dataset information

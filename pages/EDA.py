@@ -25,8 +25,6 @@ st.title("Exploratory Data Analysis Dashboard")
 
 # file_stream.seek(0)
 # Load data and perform initial processing
-st.subheader("Dataset Overview")
-
 regions = {
     "South_Asia": ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh'],  # South Asia
     "Central_America": ['Costa Rica', 'El Salvador', 'Guatemala', 'Honduras', 'Panama', 'Colombia'],  # Central America
@@ -43,14 +41,15 @@ cleaned_data = clean_data(M_food_prices)
 converted_data = currency_conversion(cleaned_data)
 
 # Your existing code
-st.write("### Filtered Data (USD Converted)")
+st.write("### Filtered Data by Region")
 st.write(converted_data.head())
 
 # Add this line to display insights
 display_data_insights(converted_data)
 
-# Generate visualizations
-st.subheader("Visualizations")
+# Correlation calculation
+st.write("#### Correlation Analysis: Year vs Price")
+correlation, p_value = calculate_correlation_with_insights(converted_data)
 
 st.write("#### Price Trend Over Time by Country")
 st.pyplot(plot_price_trend(converted_data))
@@ -59,17 +58,13 @@ st.pyplot(plot_price_trend(converted_data))
 st.write("#### Price Distribution by Country (USD)")
 st.pyplot(plot_boxplot_by_country(converted_data))
 
+st.write("#### Commodity Price Correlation Analysis")
+
+
 # Commodity-specific price trends
 commodity = st.sidebar.selectbox("Select Commodity", converted_data['cm_name'].unique())
 st.write(f"#### {commodity} Price Trend Over Time")
 st.pyplot(plot_commodity_price(converted_data, commodity))
-
-# Statistical Analysis Section
-st.subheader("Statistical Analysis")
-
-# Correlation calculation
-st.write("#### Correlation Analysis: Year vs Price")
-correlation, p_value = calculate_correlation_with_insights(converted_data)
 
 # Regression Analysis
 # st.write("#### Regression Analysis")
@@ -82,4 +77,4 @@ correlation, p_value = calculate_correlation_with_insights(converted_data)
 # st.write("Residual analysis complete. See console output for details.")
 
 # Run the app using:
-# streamlit run streamlit_app.py
+# streamlit run predictions.py
