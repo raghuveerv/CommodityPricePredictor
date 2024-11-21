@@ -52,6 +52,7 @@ st.write(converted_data.head())
 st.subheader("Visualizations")
 
 # Price trend line chart
+st.subheader("Visualizations")
 st.write("#### Price Trend Over Time by Country")
 st.pyplot(plot_price_trend(converted_data))
 
