@@ -3,7 +3,7 @@ import streamlit as st
 from b2sdk.v2 import B2Api, InMemoryAccountInfo, DoNothingProgressListener
 from src.data_processing import load_and_prepare_data, process_data, clean_data, currency_conversion
 from src.visualizations import plot_price_trend, plot_boxplot_by_country, plot_commodity_price
-from src.analysis import calculate_correlation, run_regression, residual_analysis
+from src.analysis import calculate_correlation_with_insights, run_regression, residual_analysis, display_data_insights
 
 # Page title
 st.title("Exploratory Data Analysis Dashboard")
@@ -26,8 +26,6 @@ st.title("Exploratory Data Analysis Dashboard")
 # file_stream.seek(0)
 # Load data and perform initial processing
 st.subheader("Dataset Overview")
-st.write("### Original Data")
-
 
 regions = {
     "South_Asia": ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh'],  # South Asia
@@ -44,15 +42,16 @@ M_food_prices = load_and_prepare_data(f"https://raw.githubusercontent.com/raghuv
 cleaned_data = clean_data(M_food_prices)
 converted_data = currency_conversion(cleaned_data)
 
-# Display filtered data
+# Your existing code
 st.write("### Filtered Data (USD Converted)")
 st.write(converted_data.head())
+
+# Add this line to display insights
+display_data_insights(converted_data)
 
 # Generate visualizations
 st.subheader("Visualizations")
 
-# Price trend line chart
-st.subheader("Visualizations")
 st.write("#### Price Trend Over Time by Country")
 st.pyplot(plot_price_trend(converted_data))
 
@@ -69,10 +68,8 @@ st.pyplot(plot_commodity_price(converted_data, commodity))
 st.subheader("Statistical Analysis")
 
 # Correlation calculation
-st.write("#### Pearson Correlation between Year and Price (USD)")
-correlation, p_value = calculate_correlation(converted_data)
-st.write(f"Pearson correlation coefficient: {correlation}")
-st.write(f"P-value: {p_value}")
+st.write("#### Correlation Analysis: Year vs Price")
+correlation, p_value = calculate_correlation_with_insights(converted_data)
 
 # Regression Analysis
 # st.write("#### Regression Analysis")

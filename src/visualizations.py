@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
+@st.cache_data
 def plot_price_trend(df):
     """Generate a line plot for price trends over time by country with Streamlit integration."""
     # Prepare data
@@ -42,6 +43,7 @@ def plot_price_trend(df):
     
     return fig
 
+@st.cache_data
 def plot_boxplot_by_country(df):
     """Generate a boxplot for price distribution by country with Streamlit integration."""
     fig, ax = plt.subplots(figsize=(14, 8))
@@ -77,6 +79,7 @@ def plot_boxplot_by_country(df):
     
     return fig
 
+@st.cache_data
 def plot_commodity_price(df, commodity_name):
     """Generate a line plot for a specific commodity's price trend with Streamlit integration."""
     # Filter for the selected commodity

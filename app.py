@@ -27,7 +27,7 @@ converted_data = currency_conversion(cleaned_data)
 
 # Run analyses
 #calculate_correlation(converted_data)
-model_columns = ['country_name','unit_measure_id','price_month','price_year','commodity_category','price_usd']
+model_columns = ['country_name','unit_measure_id','price_month','price_year','commodity_category','price']
 
 converted_data = categorize_commodity(converted_data)
 
