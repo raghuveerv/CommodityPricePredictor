@@ -25,6 +25,14 @@ currency_conversion_dict = {
     'COP': 0.00024,
     'GTQ': 0.13,
     'KHR': 0.00025,
+    'LAK': 0.000046,
+    'MMK': 0.00048,
+    'PHP': 0.017,
+    'IDR': 0.000063,
+    'AZN': 0.59,
+    'JOD': 1.41,
+    'LBP': 0.000011,
+    'SYP': 0.000076
 }
 
 commodity_mapping = {
