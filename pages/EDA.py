@@ -40,11 +40,8 @@ selected_region = st.sidebar.selectbox("Select Region", list(regions.keys()), in
 selected_countries = regions[selected_region]
 M_food_prices = load_and_prepare_data(f"https://raw.githubusercontent.com/raghuveerv/CommodityPricePredictor/refs/heads/main/data/wfp_{selected_region}.csv")
 
-
-filtered_data = process_data(M_food_prices, selected_countries)
-
 # Data cleaning and currency conversion
-cleaned_data = clean_data(filtered_data)
+cleaned_data = clean_data(M_food_prices)
 converted_data = currency_conversion(cleaned_data)
 
 # Display filtered data
