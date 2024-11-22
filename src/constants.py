@@ -12,8 +12,7 @@ column_rename_dict = {
     'um_id': 'unit_measure_id',
     'mp_month': 'price_month',
     'mp_year': 'price_year',
-    'mp_price': 'price',
-    'cm_name': 'commodity_category'
+    'mp_price': 'price'
 }
 
 currency_conversion_dict = {

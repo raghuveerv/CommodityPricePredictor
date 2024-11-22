@@ -10,7 +10,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import PolynomialFeatures, OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.metrics import mean_squared_error, r2_score
-
 import numpy as np
 
 @st.cache_data
@@ -163,60 +162,6 @@ def display_data_insights(df):
             """)
 
     return None
-
-=======
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-
-def calculate_correlation(df):
-    # correlation, p_value = pearsonr(df['price_year'], df['price_usd'])
-    # return correlation, p_value
-# Ensure price_usd is rounded to two decimal places
-    df['price_usd'] = df['price_usd'].round(2)
-
-    # Group by region, commodity, and calculate average price
-    region_commodity_prices = df.groupby(['region_name', 'commodity_category'])['price_usd'].mean().reset_index()
-
-    # Get the top 5 most common commodities
-    top_commodities = df['commodity_category'].value_counts().nlargest(5).index
-
-    # Filter for these top commodities
-    top_commodity_prices = region_commodity_prices[region_commodity_prices['commodity_category'].isin(top_commodities)]
-
-    # Create a pivot table for easier plotting
-    pivot_prices = top_commodity_prices.pivot(index='region_name', columns='commodity_category', values='price_usd')
-
-    # Plot
-    plt.figure(figsize=(12, 8))
-    sns.heatmap(pivot_prices, annot=True, fmt='.2f', cmap='YlOrRd')
-    plt.title('Average Prices (USD) of Top 5 Commodities')
-    plt.tight_layout()
-    plt.show()
-    
-
-    # Print summary statistics
-    print("Summary statistics for top 5 commodities across regions:")
-    print(pivot_prices.describe())
-
-    # Find the commodity with the highest price variation across regions
-    price_variation = pivot_prices.std()
-    most_variable_commodity = price_variation.idxmax()
-    print(f"\nCommodity with highest price variation across regions: {most_variable_commodity}")
-    print(f"Price range: ${pivot_prices[most_variable_commodity].min():.2f} - ${pivot_prices[most_variable_commodity].max():.2f}")
-
-    # Calculate percentage difference between highest and lowest price for each commodity
-    for commodity in top_commodities:
-        min_price = pivot_prices[commodity].min()
-        max_price = pivot_prices[commodity].max()
-        pct_difference = ((max_price - min_price) / min_price) * 100
-        print(f"\n{commodity}:")
-        print(f"Lowest price: ${min_price:.2f} (Region: {pivot_prices[commodity].idxmin()})")
-        print(f"Highest price: ${max_price:.2f} (Region: {pivot_prices[commodity].idxmax()})")
-        print(f"Percentage difference: {pct_difference:.2f}%")
-    
-    return plt,min_price 
 
 @st.cache_data
 def run_regression(df):
