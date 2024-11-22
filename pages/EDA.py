@@ -3,7 +3,7 @@ import streamlit as st
 from b2sdk.v2 import B2Api, InMemoryAccountInfo, DoNothingProgressListener
 from src.data_processing import load_and_prepare_data, process_data, clean_data, currency_conversion
 from src.visualizations import plot_price_trend, plot_boxplot_by_country, plot_commodity_price
-from src.analysis import calculate_correlation, run_regression, residual_analysis
+from src.analysis import calculate_correlation_with_insights, run_regression, residual_analysis, display_data_insights
 
 # Page title
 st.title("Exploratory Data Analysis Dashboard")
@@ -25,10 +25,6 @@ st.title("Exploratory Data Analysis Dashboard")
 
 # file_stream.seek(0)
 # Load data and perform initial processing
-st.subheader("Dataset Overview")
-st.write("### Original Data")
-
-
 regions = {
     "South_Asia": ['India', 'Pakistan', 'Sri Lanka', 'Nepal', 'Bhutan', 'Bangladesh'],  # South Asia
     "Central_America": ['Costa Rica', 'El Salvador', 'Guatemala', 'Honduras', 'Panama', 'Colombia'],  # Central America
@@ -40,21 +36,21 @@ selected_region = st.sidebar.selectbox("Select Region", list(regions.keys()), in
 selected_countries = regions[selected_region]
 M_food_prices = load_and_prepare_data(f"https://raw.githubusercontent.com/raghuveerv/CommodityPricePredictor/refs/heads/main/data/wfp_{selected_region}.csv")
 
-
-filtered_data = process_data(M_food_prices, selected_countries)
-
 # Data cleaning and currency conversion
-cleaned_data = clean_data(filtered_data)
+cleaned_data = clean_data(M_food_prices)
 converted_data = currency_conversion(cleaned_data)
 
-# Display filtered data
-st.write("### Filtered Data (USD Converted)")
+# Your existing code
+st.write("### Filtered Data by Region")
 st.write(converted_data.head())
 
-# Generate visualizations
-st.subheader("Visualizations")
+# Add this line to display insights
+display_data_insights(converted_data)
 
-# Price trend line chart
+# Correlation calculation
+st.write("#### Correlation Analysis: Year vs Price")
+correlation, p_value = calculate_correlation_with_insights(converted_data)
+
 st.write("#### Price Trend Over Time by Country")
 st.pyplot(plot_price_trend(converted_data))
 
@@ -62,10 +58,14 @@ st.pyplot(plot_price_trend(converted_data))
 st.write("#### Price Distribution by Country (USD)")
 st.pyplot(plot_boxplot_by_country(converted_data))
 
+st.write("#### Commodity Price Correlation Analysis")
+
+
 # Commodity-specific price trends
 commodity = st.sidebar.selectbox("Select Commodity", converted_data['commodity_category'].unique())
 st.write(f"#### {commodity} Price Trend Over Time")
 st.pyplot(plot_commodity_price(converted_data, commodity))
+
 
 # Statistical Analysis Section
 st.subheader("Statistical Analysis")
@@ -76,6 +76,7 @@ plt, min_price = calculate_correlation(converted_data)
 # st.write(f"Pearson correlation coefficient: {plt}")
 st.write(f"P-value: {min_price}")
 st.pyplot(plt)
+
 # Regression Analysis
 # st.write("#### Regression Analysis")
 # run_regression(converted_data)
@@ -87,4 +88,4 @@ st.pyplot(plt)
 # st.write("Residual analysis complete. See console output for details.")
 
 # Run the app using:
-# streamlit run streamlit_app.py
+# streamlit run predictions.py
