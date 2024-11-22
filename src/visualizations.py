@@ -86,6 +86,10 @@ def plot_commodity_price(df, commodity_name):
     df_commodity = df[df['cm_name'] == commodity_name]
     
     # Prepare data
+=======
+    df_commodity = df[df['commodity_category'] == commodity_name]
+    # Rename columns and convert to datetime format
+
     df_commodity['date'] = pd.to_datetime(df_commodity[['price_year', 'price_month']]
                                         .rename(columns={'price_year': 'year', 'price_month': 'month'})
                                         .assign(day=1))
