@@ -3,10 +3,7 @@ import io
 import pandas as pd
 from b2sdk.v2 import B2Api, InMemoryAccountInfo, DoNothingProgressListener
 import os
-from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv()
 
 # Set the page title to 'Predicted Prices'
 st.set_page_config(page_title="Predicted Prices")
