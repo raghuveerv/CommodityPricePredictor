@@ -29,7 +29,7 @@ def currency_conversion(df):
     return df
 
 def categorize_commodity(df):
-    df['commodity_category'] = df['cm_name'].map(commodity_mapping)
+    df['cm_name'] = df['cm_name'].map(commodity_mapping)
     return df
 
 def select_model_columns(df, columns):
