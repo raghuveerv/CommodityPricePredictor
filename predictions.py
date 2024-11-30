@@ -5,15 +5,8 @@ from b2sdk.v2 import B2Api, InMemoryAccountInfo, DoNothingProgressListener
 import os
 import subprocess
 import sys
-def install_dotenv():
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "python-dotenv"])
 
-# Call the function to install
-install_dotenv()
-from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv()
 
 # Configure page layout
 st.set_page_config(
