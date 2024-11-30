@@ -3,10 +3,7 @@ import io
 import pandas as pd
 from b2sdk.v2 import B2Api, InMemoryAccountInfo, DoNothingProgressListener
 import os
-from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv()
 
 # Configure page layout
 st.set_page_config(
