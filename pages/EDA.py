@@ -6,7 +6,6 @@ from src.visualizations import plot_price_trend, plot_boxplot_by_country, plot_c
 from src.analysis import calculate_correlation_with_insights, run_regression, residual_analysis, display_data_insights
 import pandas as pd
 import os
-from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -151,7 +150,6 @@ def create_sidebar():
     """, unsafe_allow_html=True)
 
 # Load data from Backblaze
-load_dotenv()
 @st.cache_data
 def load_data(selected_region):
     try:

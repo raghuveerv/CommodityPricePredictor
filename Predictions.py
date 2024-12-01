@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import base64
 import os
-from dotenv import load_dotenv
 from b2sdk.v2 import InMemoryAccountInfo, B2Api, DoNothingProgressListener
 import io
 import folium
@@ -18,7 +17,6 @@ st.set_page_config(
 )
 
 
-load_dotenv()
 # Custom CSS for enhanced aesthetics
 st.markdown("""
 <style>
