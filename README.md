@@ -1,5 +1,7 @@
 # CommodityPricePredictor
 
+Link to app: https://global-food-prices.streamlit.app/
+
 ## Abstract/ Overview:
 
 The primary goal of this project is to develop a user-friendly web application that empowers users to analyze and predict commodity prices. 
