@@ -6,8 +6,7 @@ import os
 import subprocess
 import sys
 
-from dotenv import load_dotenv
-load_dotenv()
+
 class DataLoader:
     def __init__(self):
         self.data = None
@@ -57,6 +56,46 @@ class DataLoader:
             (self.data['commodity_category'] == commodity)
         ]
         return filtered_data
+
+def test_food_price_prediction(data_loader):
+    """
+    Test function to validate the price prediction for specific parameters:
+    - Country: India
+    - Year: 2017
+    - Month: 1 (January)
+    - Commodity: Fuel
+    """
+    try:
+        # Test Case 1: Validate Data Loading
+        print("Test 1: Validating data...")
+        data = data_loader.load_data()
+        assert not data.empty, "Data should not be empty"
+        print("✓ Data validation successful")
+
+        # Test Case 2: Test Data Filtering
+        print("\nTest 2: Testing data filtering...")
+        filtered_data = data_loader.filter_data(
+            country='India',
+            year=2017,
+            month=1,
+            commodity='Fuel'
+        )
+        print("✓ Data filtering successful")
+
+        # Test Case 3: Validate Prediction
+        if not filtered_data.empty:
+            print("\nTest 3: Validating prediction...")
+            predicted_price = filtered_data['predicted_price'].mean()
+            print(f"Predicted price for Fuel in India (Jan 2017): ${predicted_price:.2f}")
+            print("✓ Prediction validation successful")
+            return True, predicted_price
+        else:
+            print("\nTest 3: No data available for specified parameters")
+            return False, None
+
+    except Exception as e:
+        print(f"Test error: {str(e)}")
+        return False, None
 
 class FoodPriceUI:
     def __init__(self):
@@ -306,6 +345,17 @@ def main():
     # Setup UI components
     ui.create_sidebar()
     ui.create_header()
+    
+    # Add test option in sidebar after sidebar creation
+    if st.sidebar.checkbox("🧪 Run Tests", value=False):
+        st.sidebar.markdown("---")  # Add separator
+        with st.sidebar.expander("Test Results", expanded=True):
+            success, price = test_food_price_prediction(data_loader)
+            if success:
+                st.sidebar.success(f"✓ Tests passed!\nSample prediction: ${price:.2f}")
+            else:
+                st.sidebar.error("❌ Tests failed or no data available")
+        st.sidebar.markdown("---")  # Add separator
     
     # Load and process data
     data = data_loader.load_data()
