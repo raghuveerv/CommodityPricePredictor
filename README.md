@@ -20,20 +20,23 @@ Basic data cleaning and preprocessing were performed to enhance data quality and
 
 ## Algorithm Description:
 
-### 1. Price Prediction Algorithm
+### 1. Price Prediction Algorithm using Random Forest
 
-#### Dataset Preprocessing:
-* Filter historical price data by region/country
-* Normalize prices to account for inflation and currency differences
-* Group by commodity categories
+#### Model Architecture:
+* Random Forest Regressor for price prediction
+* Key features: country, commodity, month, year, market type
+* Ensemble of decision trees reduces overfitting
+* Handles both numerical and categorical variables effectively
 
 #### Prediction Process:
 * Input: Country, Year, Month, Commodity
-* Apply filtering conditions simultaneously
-* Calculate predicted price based on:
-  - Historical price trends
-  - Seasonal patterns
-  - Regional market conditions
+* Feature preprocessing:
+  - Encode categorical variables
+  - Normalize numerical features
+* Random Forest prediction based on:
+  - Historical patterns
+  - Seasonal trends
+  - Market conditions
 * Output: Predicted price value
 
 ### 2. Data Analysis Algorithm
