@@ -14,6 +14,8 @@ Stakeholders, including farmers, traders, and market analysts, will find this to
 
 ## Data Description
 
+Link: https://www.kaggle.com/datasets/jboysen/global-food-prices/data
+
 The dataset used in this project is sourced from Kaggle and contains global food prices across various countries. It includes a mix of numerical, categorical, and temporal data, with columns such as country names, commodity names, market types, prices, units of measurement, and timestamps (month and year).
 
 Originally, the dataset comprised approximately 740,000 rows, covering over 150 countries. To focus the analysis, we divided the data into four regions: Central America, South Asia, Southeast Asia, and the Middle East, each containing its respective set of countries.
