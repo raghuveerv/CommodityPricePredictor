@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# CommodityPricePredictor
-=======
 # CommodityPricePredictor
 
 Link to app: https://global-food-prices.streamlit.app/
