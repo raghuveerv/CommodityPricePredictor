@@ -7,6 +7,7 @@ import io
 import folium
 from folium import plugins
 import geopandas as gpd
+from dotenv import load_dotenv
 
 # Set page configuration with a dark theme
 st.set_page_config(
@@ -132,6 +133,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load data with updated caching method
+load_dotenv()
 @st.cache_data
 def load_data():
     try:

@@ -1,5 +1,5 @@
 import streamlit as st
-
+#The app
 # Apply the same custom CSS for the entire app
 st.markdown("""
 <style>
