@@ -12,8 +12,7 @@ column_rename_dict = {
     'um_id': 'unit_measure_id',
     'mp_month': 'price_month',
     'mp_year': 'price_year',
-    'mp_price': 'price',
-    'cm_name': 'commodity_category'
+    'mp_price': 'price'
 }
 
 currency_conversion_dict = {
@@ -22,7 +21,18 @@ currency_conversion_dict = {
     'INR': 0.012,
     'NPR': 0.0075,
     'PKR': 0.0036,
-    'LKR': 0.0031
+    'LKR': 0.0031,
+    'COP': 0.00024,
+    'GTQ': 0.13,
+    'KHR': 0.00025,
+    'LAK': 0.000046,
+    'MMK': 0.00048,
+    'PHP': 0.017,
+    'IDR': 0.000063,
+    'AZN': 0.59,
+    'JOD': 1.41,
+    'LBP': 0.000011,
+    'SYP': 0.000076
 }
 
 commodity_mapping = {
