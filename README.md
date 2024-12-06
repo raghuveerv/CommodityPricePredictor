@@ -78,7 +78,13 @@ The analysis relies on the **Global Food Prices Dataset** from [Kaggle](https://
   - Certain anomalies in the dataset, such as wages being listed as a commodity and "day" appearing as a unit of measurement, raise questions about the reliability and context of these entries.  
 - **Mitigation**:  
   - While these inconsistencies did not impact the predictions, further validation and consolidation with original data sources or additional datasets are   needed to understand and address these anomalies.
-
+    
+### Price Conversion Inconsistency  
+- **Concern**:  
+  - The current price conversion values are static, and do not reflect real-time exchange rates. This could lead to discrepancies in pricing data when comparing across different currencies.  
+- **Mitigation**:  
+  - To address this issue, dynamic price conversions can be implemented by integrating an API, such as [exchangeratesapi](https://exchangeratesapi.io/), to fetch up-to-date exchange rates. This will ensure that the price conversions are accurate and reflect the current market rates.
+    
 ### Data Representation
 - **Concern**: 
   -Limited regional coverage might not represent global trends.
